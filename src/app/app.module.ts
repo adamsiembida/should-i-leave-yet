@@ -6,20 +6,18 @@ import { MaskedInputDirective } from 'angular2-text-mask';
 
 import { AppComponent } from './app.component';
 import { TimeEntryComponent } from './time-entry/time-entry.component';
-import { LocationInputComponent } from './location-input/location-input.component';
-import { LocationsRowComponent } from './locations-row/locations-row.component';
+import { BingMapComponent } from './bing-map/bing-map.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MaskedInputDirective,
     TimeEntryComponent,
-    LocationInputComponent,
-    LocationsRowComponent
+    BingMapComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

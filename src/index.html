@@ -8,7 +8,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbvmqRt2YcyWlbfpVK2cQLVOGsNmlQ93Y&libraries=places"></script>
+  <style>
+    .dirBtnTime {
+      display: none !important;
+    }
+  </style>
+
+  <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbvmqRt2YcyWlbfpVK2cQLVOGsNmlQ93Y&libraries=places"></script>-->
+  <script>
+    var mapApiLoaded = false;
+    var event = new Event('apiLoaded');
+    function bingMapApiLoaded() {
+      mapApiLoaded = true;
+      document.dispatchEvent(event);
+    }
+  </script>
+  <script src='https://www.bing.com/api/maps/mapcontrol?callback=bingMapApiLoaded'></script>
 </head>
 <body>
   <app-root></app-root>

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LocationInputComponent } from './location-input.component';
+import { BingMapComponent } from './bing-map.component';
 
-describe('LocationInputComponent', () => {
-  let component: LocationInputComponent;
-  let fixture: ComponentFixture<LocationInputComponent>;
+describe('BingMapComponent', () => {
+  let component: BingMapComponent;
+  let fixture: ComponentFixture<BingMapComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LocationInputComponent ]
+      declarations: [ BingMapComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LocationInputComponent);
+    fixture = TestBed.createComponent(BingMapComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
