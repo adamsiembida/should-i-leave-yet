@@ -1,0 +1,22 @@
+<div class="row justify-content-center no-gutters">
+
+  <!-- Hours -->
+  <div class="col input-col">
+    <input [(ngModel)]="hours" class="input-hours" [textMask]="hoursMask" />
+  </div>
+  <div class="col col-md-auto label-col">
+    <label class="label-hours">hours</label>
+  </div>
+
+  <!-- Line break when smaller than md -->
+  <div class="w-100 hidden-md-up"></div>
+
+  <!-- Minutes -->
+  <div class="col col-md-auto input-col">
+    <input [(ngModel)]="minutes" class="input-minutes" [textMask]="minutesMask" />
+  </div>
+  <div class="col label-col">
+    <label class="label-minutes">minutes</label>
+  </div>
+
+</div>
