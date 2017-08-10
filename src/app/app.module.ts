@@ -7,6 +7,7 @@ import { MaskedInputDirective } from 'angular2-text-mask';
 import { AppComponent } from './app.component';
 import { TimeEntryComponent } from './time-entry/time-entry.component';
 import { BingMapComponent } from './bing-map/bing-map.component';
+import { MainLoopService } from './main-loop.service';
 import { ResetTimerComponent } from './reset-timer/reset-timer.component';
 
 @NgModule({
@@ -21,7 +22,7 @@ import { ResetTimerComponent } from './reset-timer/reset-timer.component';
     BrowserModule,
     FormsModule
   ],
-  providers: [],
+  providers: [MainLoopService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
