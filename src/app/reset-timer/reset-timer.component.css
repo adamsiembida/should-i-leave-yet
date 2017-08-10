@@ -1,0 +1,10 @@
+.bar-container {
+  height: 2px;
+  width: 100%;
+}
+
+.bar {
+  height: 100%;
+  width: 0;
+  background-color: #0084f4;
+}
