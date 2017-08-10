@@ -29,7 +29,8 @@ export class BingMapComponent implements AfterViewInit {
     const map = new Microsoft.Maps.Map(document.getElementById('bingMap'), {
       credentials: 'AqN4AgKznjhDFoTX722rYmD05XvMvgzufcmcAFP5yYh1n__0y7DcNvQ9xmyBAVAm',
       center: new Microsoft.Maps.Location(47.606209, -122.332071),
-      zoom: 12
+      zoom: 12,
+      showMapTypeSelector: false
     });
 
     Microsoft.Maps.loadModule('Microsoft.Maps.Directions', () => {
