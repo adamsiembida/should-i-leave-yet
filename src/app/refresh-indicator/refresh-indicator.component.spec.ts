@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ResetTimerComponent } from './reset-timer.component';
+import { RefreshIndicatorComponent } from './refresh-indicator.component';
 
-describe('ResetTimerComponent', () => {
-  let component: ResetTimerComponent;
-  let fixture: ComponentFixture<ResetTimerComponent>;
+describe('RefreshIndicatorComponent', () => {
+  let component: RefreshIndicatorComponent;
+  let fixture: ComponentFixture<RefreshIndicatorComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ResetTimerComponent ]
+      declarations: [ RefreshIndicatorComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ResetTimerComponent);
+    fixture = TestBed.createComponent(RefreshIndicatorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

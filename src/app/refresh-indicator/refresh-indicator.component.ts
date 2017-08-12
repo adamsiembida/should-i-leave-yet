@@ -1,27 +1,30 @@
 import { Component, OnInit } from '@angular/core';
+import { MainLoopService } from '../main-loop.service';
 
 @Component({
-  selector: 'app-reset-timer',
-  templateUrl: './reset-timer.component.html',
-  styleUrls: ['./reset-timer.component.css']
+  selector: 'app-refresh-indicator',
+  templateUrl: './refresh-indicator.component.html',
+  styleUrls: ['./refresh-indicator.component.css']
 })
-export class ResetTimerComponent implements OnInit {
+export class RefreshIndicatorComponent implements OnInit {
 
   public progressPercentage: string;
   public progressAnimationDuration: string;
 
   private timer;
   private tickTime = 1000; // Tick time in ms.
-  private reloadValue = 30;
+  private reloadValue = 15;
   private currentValue = 0;
 
-  constructor() {
+  private timerExpiredCallback: () => void;
+
+  constructor(public mainLoopService: MainLoopService) {
     this.setProgress(0);
     this.progressAnimationDuration = 'width ' + Number(this.tickTime) + 'ms linear';
   }
 
   ngOnInit() {
-    this.restartTimer();
+    this.mainLoopService.setTimerComponent(this);
   }
 
   // Progress is set by the width css property as a percentage.
@@ -42,8 +45,7 @@ export class ResetTimerComponent implements OnInit {
 
   onTimerExpired(): void {
     // Fire an event or call something in the service.
-
-    this.restartTimer();
+    this.timerExpiredCallback();
   }
 
   pauseTimer(): void {
@@ -66,5 +68,9 @@ export class ResetTimerComponent implements OnInit {
   restartTimer(): void {
     this.prepareTimer();
     this.resumeTimer();
+  }
+
+  setTimerExpiredCallback(f: () => void) {
+    this.timerExpiredCallback = f;
   }
 }
