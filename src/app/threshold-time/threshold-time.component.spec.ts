@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TimeEntryComponent } from './time-entry.component';
 
-describe('TimeEntryComponent', () => {
+describe('ThresholdTimeComponent', () => {
   let component: TimeEntryComponent;
   let fixture: ComponentFixture<TimeEntryComponent>;
 
