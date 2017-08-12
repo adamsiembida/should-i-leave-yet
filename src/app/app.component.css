@@ -1,9 +1,5 @@
-#title-container {
-  padding-top: 2.1rem;
+.page-headers {
   max-width: 40rem;
   text-align: center;
-}
-
-.map-container {
-  /*max-width: 1500px;*/
+  padding-top: 2.1rem;
 }
