@@ -1,26 +1,26 @@
-.component {
+.component-container {
   margin-top: 4rem;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
   height: 100vh;
 }
 
-#directionsInputContainer {
+#directions-input-panel {
   background-color: #fbfbfb;
   height: 100%;
 }
 
-#bingMap {
+#bing-map {
   width: 100%;
   height: 100%;
 }
 
-#printout-panel-wrapper {
+#directions-panel-wrapper {
   width: 360px;
   height: 100%;
   overflow: hidden;
 }
 
-#printoutPanel {
+#directions-panel {
   display:inline-block;
   height: 100%;
   overflow-y: scroll;

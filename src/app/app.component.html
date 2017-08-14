@@ -1,11 +1,10 @@
-<app-refresh-indicator></app-refresh-indicator>
+<app-refresh-indicator [refreshPeriodMs]="refreshPeriodMs"></app-refresh-indicator>
 
 <div class="container page-headers">
   <app-title></app-title>
   <app-subtitle></app-subtitle>
 </div>
-
 <div class="container-fluid">
-  <app-threshold-time></app-threshold-time>
-  <app-bing-map></app-bing-map>
+  <app-threshold-time (onTimeChanged)="onThresholdChanged($event)"></app-threshold-time>
+  <app-bing-map (onDirectionsChanged)="onTravelTimeChanged($event)"></app-bing-map>
 </div>

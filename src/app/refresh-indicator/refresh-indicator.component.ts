@@ -1,76 +1,48 @@
-import { Component, OnInit } from '@angular/core';
-import { MainLoopService } from '../main-loop.service';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-refresh-indicator',
   templateUrl: './refresh-indicator.component.html',
   styleUrls: ['./refresh-indicator.component.css']
 })
-export class RefreshIndicatorComponent implements OnInit {
+export class RefreshIndicatorComponent {
 
-  public progressPercentage: string;
-  public progressAnimationDuration: string;
+  public progress: string;
+  public animation: string;
 
-  private timer;
-  private tickTime = 1000; // Tick time in ms.
-  private reloadValue = 15;
-  private currentValue = 0;
+  @Input()
+  refreshPeriodMs: number;
+  resetDelayMs = 1000;
 
-  private timerExpiredCallback: () => void;
-
-  constructor(public mainLoopService: MainLoopService) {
-    this.setProgress(0);
-    this.progressAnimationDuration = 'width ' + Number(this.tickTime) + 'ms linear';
+  constructor() {
+    this.stop();
   }
 
-  ngOnInit() {
-    this.mainLoopService.setTimerComponent(this);
+  start() {
+    this.stop();
+
+    // Give time for the "stop" css to take effect before starting. Otherwise bar won't clear to zero.
+    setTimeout(() => {
+      this.enableAnimation();
+      this.setProgressRatio(1);
+    }, this.resetDelayMs);
   }
 
-  // Progress is set by the width css property as a percentage.
-  setProgress(ratio: number): void {
-    this.progressPercentage = (ratio * 100) + '%';
+  stop() {
+    // Set to zero.
+    this.disableAnimation();
+    this.setProgressRatio(0);
   }
 
-  onTick(): void {
-    if (this.currentValue > 0) {
-      this.currentValue--;
-    } else {
-      this.pauseTimer();
-      this.onTimerExpired();
-    }
-
-    this.setProgress(this.currentValue / this.reloadValue);
+  private setProgressRatio(newRatio: number) {
+    this.progress = (newRatio * 100) + '%';
   }
 
-  onTimerExpired(): void {
-    // Fire an event or call something in the service.
-    this.timerExpiredCallback();
+  private enableAnimation() {
+    this.animation = 'width ' + (this.refreshPeriodMs - this.resetDelayMs) + 'ms linear';
   }
 
-  pauseTimer(): void {
-    clearInterval(this.timer);
-  }
-
-  resumeTimer(): void {
-    this.timer = setInterval(this.onTick.bind(this), this.tickTime);
-  }
-
-  reloadTimer(): void {
-    this.currentValue = this.reloadValue;
-  }
-
-  prepareTimer(): void {
-    this.pauseTimer();
-    this.reloadTimer();
-  }
-
-  restartTimer(): void {
-    this.prepareTimer();
-    this.resumeTimer();
-  }
-
-  setTimerExpiredCallback(f: () => void) {
-    this.timerExpiredCallback = f;
+  private disableAnimation() {
+    this.animation = 'width ' + 0 + 's linear';
   }
 }

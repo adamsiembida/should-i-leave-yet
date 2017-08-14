@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { MaskedInputDirective } from 'angular2-text-mask';
+import { TextMaskModule } from 'angular2-text-mask';
 
 import { AppComponent } from './app.component';
 import { ThresholdTimeComponent } from './threshold-time/threshold-time.component';
@@ -14,7 +14,6 @@ import { SubtitleComponent } from './subtitle/subtitle.component';
 @NgModule({
   declarations: [
     AppComponent,
-    MaskedInputDirective,
     ThresholdTimeComponent,
     BingMapComponent,
     RefreshIndicatorComponent,
@@ -23,7 +22,8 @@ import { SubtitleComponent } from './subtitle/subtitle.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    TextMaskModule
   ],
   providers: [],
   bootstrap: [AppComponent]

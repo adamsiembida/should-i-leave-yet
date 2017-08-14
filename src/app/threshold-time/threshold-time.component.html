@@ -2,7 +2,7 @@
 
   <!-- Hours -->
   <div class="col input-col">
-    <input [(ngModel)]="hoursText" (ngModelChange)="onTimeChanged()" class="input-hours" [textMask]="hoursMask" />
+    <input [(ngModel)]="hoursText" (ngModelChange)="onFieldChanged()" class="input-hours" [textMask]="hoursMask" />
   </div>
   <div class="col col-md-auto label-col">
     <label class="label-hours">hours</label>
@@ -13,7 +13,7 @@
 
   <!-- Minutes -->
   <div class="col col-md-auto input-col">
-    <input [(ngModel)]="minutesText" (ngModelChange)="onTimeChanged()" class="input-minutes" [textMask]="minutesMask" />
+    <input [(ngModel)]="minutesText" (ngModelChange)="onFieldChanged()" class="input-minutes" [textMask]="minutesMask" />
   </div>
   <div class="col label-col">
     <label class="label-minutes">minutes</label>

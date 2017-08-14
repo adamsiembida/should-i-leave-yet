@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Renderer2} from '@angular/core';
+import { AfterViewInit, Component, Renderer2, EventEmitter, Output } from '@angular/core';
 
 declare var Microsoft: any;
 declare var mapApiLoaded: any;
@@ -9,62 +9,89 @@ declare var mapApiLoaded: any;
   styleUrls: ['./bing-map.component.css']
 })
 export class BingMapComponent implements AfterViewInit {
-  public directionsManager;
-  public travelTimeMinutes: number = null;
+
+  @Output()
+  onDirectionsChanged = new EventEmitter<number>();
+
+  private directionsManager;
+  private map;
+  private waypoints;
+
+  private mapGenerated = false;
 
   constructor(renderer: Renderer2) {
-    renderer.listen('document', 'apiLoaded', (event) => {
+    // Listen for the Bing Map API to finish loading in index.html.
+    renderer.listen('document', 'bingMapApiLoaded', (event) => {
       this.generateMap();
     });
   }
 
-  ngAfterViewInit(): void {
-    // Generate the map if API is already loaded. Otherwise, listen for event.
+  ngAfterViewInit() {
+    this.hideDirectionsPanelScrollBar();
+
     if (mapApiLoaded === true) {
       this.generateMap();
-
-      this.hideScrollBar();
     }
   }
 
-  generateMap() {
-    const map = new Microsoft.Maps.Map(document.getElementById('bingMap'), {
-      credentials: 'AqN4AgKznjhDFoTX722rYmD05XvMvgzufcmcAFP5yYh1n__0y7DcNvQ9xmyBAVAm',
-      center: new Microsoft.Maps.Location(47.606209, -122.332071),
-      zoom: 12,
-      showMapTypeSelector: false
-    });
+  private generateMap() {
+    // Only allow this function to be run once.
+    if (this.mapGenerated === false) {
+      this.mapGenerated = true;
 
-    Microsoft.Maps.loadModule('Microsoft.Maps.Directions', () => {
-      this.directionsManager = new Microsoft.Maps.Directions.DirectionsManager(map);
-      this.directionsManager.setRenderOptions({itineraryContainer: document.getElementById('printoutPanel')});
-      this.directionsManager.showInputPanel('directionsInputContainer');
+      this.map = new Microsoft.Maps.Map(document.getElementById('bing-map'), {
+        credentials: 'AqN4AgKznjhDFoTX722rYmD05XvMvgzufcmcAFP5yYh1n__0y7DcNvQ9xmyBAVAm',
+        showMapTypeSelector: false,
+        center: new Microsoft.Maps.Location(47.606209, -122.332071),
+        zoom: 12
+      });
 
-      // Add event handlers to directions manager.
-      Microsoft.Maps.Events.addHandler(this.directionsManager, 'directionsError', this.directionsError.bind(this));
-      Microsoft.Maps.Events.addHandler(this.directionsManager, 'directionsUpdated', this.directionsUpdated.bind(this));
+      Microsoft.Maps.loadModule('Microsoft.Maps.Directions', () => {
+        this.directionsManager = new Microsoft.Maps.Directions.DirectionsManager(this.map);
+        this.directionsManager.setRenderOptions({itineraryContainer: document.getElementById('directions-panel')});
+        this.directionsManager.showInputPanel('directions-input-panel');
 
-      this.directionsManager.directionsUpdated();
-    });
+        // Add event handlers to directions manager.
+        Microsoft.Maps.Events.addHandler(this.directionsManager, 'directionsError', this.onDirectionsError.bind(this));
+        Microsoft.Maps.Events.addHandler(this.directionsManager, 'directionsUpdated', this.onDirectionsUpdated.bind(this));
+      });
+    }
   }
 
-  directionsUpdated(e) {
-    // Get the current route index.
+  requestTravelTimeUpdate() {
+    const requestedWaypoints = this.directionsManager.getAllWaypoints();
+    this.remakeDirectionsManager(requestedWaypoints);
+
+    this.directionsManager.calculateDirections();
+  }
+
+  private onDirectionsUpdated(e) {
     const routeIdx = this.directionsManager.getRequestOptions().routeIndex;
+    const travelTimeSeconds: number = e.routeSummary[routeIdx].timeWithTraffic;
+    const travelTimeMinutes = travelTimeSeconds / 60;
 
-    // Time is in seconds, convert to minutes and round off.
-    this.travelTimeMinutes = Math.round(e.routeSummary[routeIdx].timeWithTraffic / 60);
+    this.onDirectionsChanged.emit(travelTimeMinutes);
   }
 
-  directionsError(e) {
+  private onDirectionsError(e): void {
     alert('Error: ' + e.message + '\r\nResponse Code: ' + e.responseCode);
   }
 
-  hideScrollBar() {
-    document.getElementById('printoutPanel').style.width = String(360 + this.getScrollBarWidth()) + 'px';
+  private hideDirectionsPanelScrollBar(): void {
+    document.getElementById('directions-panel').style.width = String(360 + this.getScrollBarWidth()) + 'px';
   }
 
-  getScrollBarWidth() {
+  private remakeDirectionsManager(waypoints) {
+    this.directionsManager.clearAll();
+    this.directionsManager.setRenderOptions({itineraryContainer: document.getElementById('directions-panel')});
+    this.directionsManager.showInputPanel('directions-input-panel');
+
+    for (const waypoint of waypoints) {
+      this.directionsManager.addWaypoint(waypoint);
+    }
+  }
+
+  private getScrollBarWidth(): number {
     const inner = document.createElement('p');
     inner.style.width = '100%';
     inner.style.height = '200px';

@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+
+import { BingMapComponent } from './bing-map/bing-map.component';
+import { RefreshIndicatorComponent } from './refresh-indicator/refresh-indicator.component';
 
 @Component({
   selector: 'app-root',
@@ -6,6 +9,53 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  origin = { longitude: 4.333, latitude: -1.2222 }; // its a example aleatory position
-  destination = { longitude: 22.311, latitude: -0.123 }; // its a example aleatory positio
+
+  @ViewChild(BingMapComponent)
+  private map: BingMapComponent;
+
+  @ViewChild(RefreshIndicatorComponent)
+  private refreshIndicator: RefreshIndicatorComponent;
+
+  refreshPeriodMs = 1000 * 60 * 5; // 5 minutes;
+
+  private threshold: number;
+  private travelTime: number;
+  private timer;
+  private directionsValid = false;
+
+  // Threshold is always valid, this will only updated it when the user makes a change.
+  onThresholdChanged(threshold: number) {
+    this.threshold = threshold;
+    if (this.directionsValid === true) {
+      this.startAppCycle();
+    }
+  }
+
+  // Travel time is not valid until this function is called at least once.
+  onTravelTimeChanged(travelTime: number) {
+    this.directionsValid = true;
+
+    this.travelTime = travelTime;
+    this.startAppCycle();
+  }
+
+  private startAppCycle() {
+    clearTimeout(this.timer);
+    if (this.travelTime <= this.threshold) {
+      this.refreshIndicator.stop();
+      this.notifyUserToLeave();
+
+    } else {
+      this.refreshIndicator.start();
+      this.timer = setTimeout(() => this.onTimerExpired(), this.refreshPeriodMs);
+    }
+  }
+
+  onTimerExpired() {
+    this.map.requestTravelTimeUpdate();
+  }
+
+  notifyUserToLeave() {
+    alert('Time to leave!');
+  }
 }
