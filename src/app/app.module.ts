@@ -10,6 +10,7 @@ import { BingMapComponent } from './bing-map/bing-map.component';
 import { RefreshIndicatorComponent } from './refresh-indicator/refresh-indicator.component';
 import { TitleComponent } from './title/title.component';
 import { SubtitleComponent } from './subtitle/subtitle.component';
+import { GitHubIndicatorComponent } from './github-indicator/github-indicator.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { SubtitleComponent } from './subtitle/subtitle.component';
     BingMapComponent,
     RefreshIndicatorComponent,
     TitleComponent,
-    SubtitleComponent
+    SubtitleComponent,
+    GitHubIndicatorComponent,
   ],
   imports: [
     BrowserModule,
