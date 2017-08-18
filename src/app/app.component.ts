@@ -66,13 +66,17 @@ export class AppComponent implements AfterViewInit {
   }
 
   notifyUserToLeave() {
-    const message = 'Time to leave!';
+    const minutes = this.threshold % 60;
+    const hours = Math.floor(this.threshold / 60);
+
+    const messageTitle = 'Time to leave!';
+    const messageBody = 'Travel time is less than ' + hours + ' hours and ' + minutes + ' minutes.';
 
     // Show a message if supported and enabled, otherwise show an alert.
     if (!this.notificationsSupported || Notification.permission === 'denied') {
-      alert(message);
+      alert(messageTitle + '\n\n' + messageBody);
     } else {
-      const notification = new Notification(message);
+      const notification = new Notification(messageTitle, { body: messageBody });
     }
   }
 }
