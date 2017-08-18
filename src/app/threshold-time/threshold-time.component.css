@@ -17,6 +17,7 @@
   border-bottom: 0.2rem solid;
   font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   text-align: center;
+  outline: none;
 }
 
 .input-col {
