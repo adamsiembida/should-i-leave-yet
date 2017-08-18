@@ -49,6 +49,7 @@ export class BingMapComponent implements AfterViewInit {
       Microsoft.Maps.loadModule('Microsoft.Maps.Directions', () => {
         this.directionsManager = new Microsoft.Maps.Directions.DirectionsManager(this.map);
         this.directionsManager.setRenderOptions({itineraryContainer: document.getElementById('directions-panel')});
+        this.directionsManager.setRequestOptions({maxRoutes: 1});
         this.directionsManager.showInputPanel('directions-input-panel');
 
         // Add event handlers to directions manager.
@@ -84,6 +85,7 @@ export class BingMapComponent implements AfterViewInit {
   private remakeDirectionsManager(waypoints) {
     this.directionsManager.clearAll();
     this.directionsManager.setRenderOptions({itineraryContainer: document.getElementById('directions-panel')});
+    this.directionsManager.setRequestOptions({maxRoutes: 1});
     this.directionsManager.showInputPanel('directions-input-panel');
 
     for (const waypoint of waypoints) {
