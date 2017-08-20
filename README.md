@@ -3,7 +3,7 @@
 This project is for a website that notifies you once your commute time drops
 below a certain threshold.
 
-Visit the live website [here](http://www.when-should-i-leave.com).
+Visit the live website [here](http://www.should-i-leave-yet.com).
 
 # Overview
 
