@@ -1,28 +1,32 @@
 # Should I Leave Yet?
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.6.
+This project is for a website that notifies you once your commute time drops
+below a certain threshold.
 
-## Development server
+Visit the live website [here](when-should-i-leave.com).
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+# Overview
 
-## Code scaffolding
+Traffic is conditions are irregular where I live. So, prior to leaving work I
+check the expected commute with traffic. If the commute is longer than I'm
+willing to bear, I'll continue working and check again later. If traffic is
+particularly bad, this checking and re-checking gets annoying.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
+This project aims to reduce the amount of checking and automatically send a
+desktop notification once the travel time is less than your threshold.
 
-## Build
+# Details
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+This project is a "web app" based on Angular CLI and Bootstrap 4. The project is
+developed using the WebStorm IDE. Bing Maps V8 Web Control is used for the
+mapping and directions services.
 
-## Running unit tests
+The website is meant for desktop only. I presume it could be adapted to work on
+mobile, but I believe a native app might work better for this purpose.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+# Contributions
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+TypeScript and JavaScript aren't my primary languages. In fact, my expertise
+lies as a hardware engineer. Please contribute if you see anything that looks
+funny or needs improving. Also, I don't have access to any Apple products, so I
+have no way of testing on them.
