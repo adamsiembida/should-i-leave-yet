@@ -24,6 +24,19 @@ mapping and directions services.
 The website is meant for desktop only. I presume it could be adapted to work on
 mobile, but I believe a native app might work better for this purpose.
 
+# Building
+
+Perform the following steps to build the distribution files. The files are
+generated in `/dist`.
+
+1. `ng build --prod --base-href http://www.should-i-leave-yet.com/`
+2. Delete the automatically generated `3rdpartylicenses.txt` file from the `dist`
+   folder. The tool seems to miss required licenses.
+3. Review the manually generated `3rd-party-licenses.txt` for errors. Make sure
+   to add any new libraries.
+4. If the `3rd-party-licenses.txt` file is void of any errors, copy it into the
+   `dist` folder.
+
 # Contributions
 
 TypeScript and JavaScript aren't my primary languages. In fact, my expertise
