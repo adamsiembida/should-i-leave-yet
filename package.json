@@ -1,7 +1,8 @@
 {
   "name": "should-i-leave-yet",
-  "version": "0.1.0",
-  "private": true,
+  "version": "2.0.0",
+  "license": "AGPL-3.0",
+  "private": false,
   "dependencies": {
     "bootstrap": "^4.1.1",
     "jquery": "^3.3.1",
