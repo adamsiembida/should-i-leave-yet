@@ -1,0 +1,35 @@
+.threshold-entry__label-hours, .threshold-entry__label-minutes {
+    font-size: 2rem;
+    margin-top: 0.5rem;
+    margin-right: 1rem;
+    margin-left: 1rem;
+    font-weight: 300;
+}
+
+.threshold-entry__label-minutes {
+    text-align: left;
+}
+
+.threshold-entry__input-hours, .threshold-entry__input-minutes {
+    width: 4.5rem;
+    font-size: 2.5rem;
+    border: medium none;
+    border-bottom: 0.2rem solid;
+    font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    text-align: center;
+    outline: none;
+}
+
+.threshold-entry__input-col {
+    text-align: right;
+}
+
+.threshold-entry__label-col {
+    text-align: left;
+}
+
+@media screen and (max-width: 767px) {
+    .threshold-entry__label-minutes, .threshold-entry__input-minutes {
+        padding-top: 1rem;
+    }
+}
