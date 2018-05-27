@@ -24,8 +24,15 @@ export default class ThresholdEntry extends Component {
 
   handleMinutesTyping(e) {
     const regex = /^$|^[0-9]?[0-9]$/;
+    const value = e.target.value;
     if (regex.test(e.target.value)) {
-      this.props.onMinutesChange(value);
+      // Limit minutes to 0 - 60.
+      if (value > 60) {
+        this.props.onMinutesChange(60);
+      }
+      else {
+        this.props.onMinutesChange(value);
+      }
     }
   }
 
