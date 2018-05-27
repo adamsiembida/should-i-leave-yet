@@ -2,6 +2,21 @@ import React, { Component } from 'react';
 import './../styles/ThresholdEntry.css'
 
 export default class ThresholdEntry extends Component {
+
+  handleHoursTyping(e) {
+    const regex = /^[0-9]?[0-9]$/;
+    if (regex.test(e.target.value)) {
+      this.props.onHoursChange(e.target.value);
+    }
+  }
+
+    handleMinutesTyping(e) {
+    const regex = /^[0-9]?[0-9]$/;
+    if (regex.test(e.target.value)) {
+      this.props.onMinutesChange(value);
+    }
+  }
+
   render() {
     return (
       <div className="row justify-content-center no-gutters">

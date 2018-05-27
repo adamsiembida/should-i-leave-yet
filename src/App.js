@@ -15,32 +15,20 @@ class App extends Component {
     }
   }
 
-  handleMinutesChange(e) {
-    const regex = /^[0-5]?[0-9]$/;
-    if (e.target.value === '') {
-      this.setState({minutes: 0});
-    }
-    else if (regex.test(e.target.value)) {
-      this.setState({minutes: e.target.value});
-    }
+  handleHoursChange(hours) {
+    this.setState({hours});
   }
 
-  handleHoursChange(e) {
-    const regex = /^[0-9]?[0-9]$/;
-    if (e.target.value === '') {
-      this.setState({hours: 0});
-    }
-    else if (regex.test(e.target.value)) {
-      this.setState({hours: e.target.value});
-    }
+  handleMinutesChange(minutes) {
+    this.setState({minutes});
   }
 
   render() {
     return (
       <div className="App">
         <div className="container app__page-headers">
-          <Title/>
-          <Blurb/>
+          <Title />
+          <Blurb />
         </div>
 
         <ThresholdEntry
