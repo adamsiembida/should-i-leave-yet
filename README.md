@@ -1,6 +1,6 @@
 # Archived
 
-This project is no longer maintained. A lot of the mapping apps have started to add features similar to Should I Leave Yet.
+This project is no longer maintained. A lot of the mapping apps have started to add features similar to Should I Leave Yet. Also, a lot of the mapping APIs have become more restrictive making them a challenge to use for an open source project like this.
 
 # Should I Leave Yet?
 
