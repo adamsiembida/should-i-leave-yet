@@ -1,3 +1,7 @@
+# Archived
+
+This project is no longer maintained. A lot of the mapping apps have started to add features similar to Should I Leave Yet.
+
 # Should I Leave Yet?
 
 This project is for a website that notifies you once your commute time drops
